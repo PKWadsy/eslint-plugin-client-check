@@ -1,0 +1,10 @@
+# Exclude these files and directories
+.git
+.vscode
+node_modules
+.DS_Store
+.npmrc
+.eslintrc
+.eslintignore
+test/
+examples/
