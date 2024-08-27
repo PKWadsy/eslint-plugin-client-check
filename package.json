@@ -1,26 +1,33 @@
 {
   "name": "eslint-plugin-client-check",
   "version": "1.0.1",
-  "description": "An ESLint plugin to enforce safe usage of client-side globals like window and document.",
+  "description": "ESLint plugin to ensure safe usage of client-side globals in isomorphic code.",
   "main": "lib/index.js",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/PKWadsy/eslint-plugin-client-check"
+  },
+  "scripts": {
+    "test": "mocha tests/**/*.test.js",
+    "lint": "eslint ."
   },
   "keywords": [
     "eslint",
     "eslint-plugin",
     "client-side",
-    "safety",
-    "window",
-    "document"
+    "globals",
+    "isomorphic",
+    "javascript",
+    "typescript"
   ],
-  "scripts": {
-    "lint": "eslint ."
-  },
   "author": "Kalman Wadsworth",
   "license": "MIT",
-  "peerDependencies": {
-    "eslint": ">=6.0.0"
-  }
+  "devDependencies": {
+    "eslint": "^9.9.1",
+    "eslint-rule-tester": "^4.0.0",
+    "mocha": "^10.0.0",
+    "chai": "^4.3.4"
+  },
+  "dependencies": {}
 }
