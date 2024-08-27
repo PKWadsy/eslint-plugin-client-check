@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-client-check",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "ESLint plugin to ensure safe usage of client-side globals in isomorphic code.",
   "main": "lib/index.js",
   "type": "commonjs",
