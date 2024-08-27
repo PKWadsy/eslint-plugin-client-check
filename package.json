@@ -1,0 +1,22 @@
+{
+  "name": "eslint-plugin-client-check",
+  "version": "1.0.0",
+  "description": "An ESLint plugin to enforce safe usage of client-side globals like window and document.",
+  "main": "lib/index.js",
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "client-side",
+    "safety",
+    "window",
+    "document"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "author": "Kalman Wadsworth",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": ">=6.0.0"
+  }
+}
