@@ -14,7 +14,7 @@ An ESLint plugin designed to enforce safe usage of client-side globals like `win
   - [Correct Usage](#correct-usage)
   - [Incorrect Usage](#incorrect-usage)
 - [Advanced Configuration](#advanced-configuration)
-  - [Customizing Restricted Globals](#customizing-restricted-globals)
+  - [Customizing Restricted and Additional Globals](#customizing-restricted-and-additional-globals)
 - [FAQs](#faqs)
 - [Contributing](#contributing)
 - [License](#license)
@@ -137,37 +137,47 @@ These examples will result in ESLint errors, prompting you to add the necessary 
 
 ## Advanced Configuration
 
-### Customizing Restricted Globals
+### Customizing Restricted and Additional Globals
 
-By default, the plugin checks the most common client-side globals. However, you can customize the list of globals to suit your specific project needs.
+By default, the plugin checks the most common client-side globals. However, you can customize the list of globals to suit your specific project needs, including adding your own custom globals that you want to enforce checks on.
 
-#### Example: Adding or Removing Globals
+#### Example: Adding Custom Globals
 
-If you want to add a new global or remove an existing one from the check, you can modify the plugin configuration like this:
+If you want to add a new global (e.g., `myCustomGlobal`) to the list of restricted globals, you can modify the plugin configuration like this:
 
-```javascript
-import clientCheck from 'eslint-plugin-client-check';
+```json
+{
+  "plugins": ["client-check"],
+  "rules": {
+    "client-check/no-unsafe-client-side-usage": ["error", {
+      "additionalGlobals": ["myCustomGlobal"]
+    }]
+  }
+}
+```
 
-export default {
-  plugins: {
-    'client-check': clientCheck,
-  },
-  rules: {
-    'client-check/no-unsafe-client-side-usage': ['error', {
-      restrictedGlobals: [
-        'window',
-        'document',
-        // Add custom globals
-        'customGlobal',
+In this example, `myCustomGlobal` is added to the list of globals that the rule will check. You can also remove or override the default globals by specifying them explicitly under `restrictedGlobals`.
+
+#### Example: Adding and Removing Globals
+
+```json
+{
+  "plugins": ["client-check"],
+  "rules": {
+    "client-check/no-unsafe-client-side-usage": ["error", {
+      "restrictedGlobals": [
+        "window",
+        "document",
         // Remove any globals you don't want to check
-        // 'navigator',
+        // "navigator"
+      ],
+      "additionalGlobals": [
+        "myCustomGlobal"
       ]
     }]
   }
-};
+}
 ```
-
-In this example, `customGlobal` is added to the list of restricted globals, while `navigator` is removed.
 
 ## FAQs
 
@@ -181,7 +191,7 @@ Yes, this plugin works with TypeScript projects. Just make sure your ESLint setu
 
 ### What if I don't want to enforce all the checks?
 
-You can customize which globals are checked by modifying the `restrictedGlobals` option as shown in the [Advanced Configuration](#advanced-configuration) section.
+You can customize which globals are checked by modifying the `restrictedGlobals` and `additionalGlobals` options as shown in the [Advanced Configuration](#advanced-configuration) section.
 
 ## Contributing
 
@@ -192,7 +202,3 @@ If you'd like to contribute code, feel free to submit a pull request. Please ens
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
----
-
-This comprehensive README provides detailed instructions and examples for users of your ESLint plugin, making it easier for them to understand how to install, configure, and use the plugin effectively in their projects.
